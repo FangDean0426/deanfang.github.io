@@ -8,6 +8,8 @@
     <style>
         body{background:#0a0a1e;}
         .tab-active{border-bottom:2px solid #22d3ee;color:#22d3ee;}
+        .tab-content {display: none;}
+        .tab-content.active {display: block;}
     </style>
 </head>
 <body class="text-gray-200">
@@ -24,9 +26,10 @@
     </div>
 
     <div class="p-6 max-w-4xl mx-auto">
-        <!-- 網站設定頁 -->
-        <div id="tab-site" class="tab-content">
+        <!-- 網站設定 -->
+        <div id="tab-site" class="tab-content active">
             <h3 class="text-xl mb-4">修改首頁文字</h3>
+            <!-- 您原本的網站設定表單內容貼在這裡 -->
             <div class="space-y-4">
                 <div>
                     <label class="block mb-2">首頁標題</label>
@@ -44,8 +47,8 @@
             </div>
         </div>
 
-        <!-- 作品集管理頁 -->
-        <div id="tab-works" class="tab-content hidden">
+        <!-- 作品集管理 -->
+        <div id="tab-works" class="tab-content">
             <h3 class="text-xl mb-4">新增作品集</h3>
             <div class="space-y-4 mb-8">
                 <input type="text" id="workTitle" placeholder="作品名稱" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700">
