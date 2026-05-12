@@ -1,0 +1,1467 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI創作作品集 | 專業AI設計師</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00f0ff',
+                        secondary: '#7f00ff',
+                        dark: '#0a0a1e',
+                        darkBlue: '#0f172a',
+                        lightBlue: '#0ea5e9',
+                        purple: '#8b5cf6',
+                        neon: '#00f0ff',
+                        darkPurple: '#1e1b4b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 5px rgba(0, 240, 255, 0.5)' },
+                            '100%': { boxShadow: '0 0 20px rgba(0, 240, 255, 0.8), 0 0 30px rgba(0, 240, 255, 0.6)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+            }
+            .text-gradient {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(90deg, #00f0ff, #7f00ff);
+            }
+            .bg-glass {
+                background: rgba(15, 23, 42, 0.7);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            .border-glow {
+                box-shadow: 0 0 5px rgba(0, 240, 255, 0.5), inset 0 0 5px rgba(0, 240, 255, 0.5);
+            }
+            .grid-masonry {
+                grid-template-rows: masonry;
+            }
+            .clip-path-slant {
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            }
+            .clip-path-wave {
+                clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+            }
+        }
+    </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #0a0a1e;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 240, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(127, 0, 255, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00f0ff, #7f00ff);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .active-nav::after {
+            width: 100%;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 240, 255, 0.5);
+            pointer-events: none;
+            animation: float-particle 8s infinite ease-in-out;
+        }
+        
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+        
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a1e;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #00f0ff, #7f00ff);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #0ea5e9, #8b5cf6);
+        }
+        
+        /* 模态框动画 */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal-content {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* 表单输入动画 */
+        .form-input:focus {
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.3);
+        }
+        
+        /* 按钮悬停效果 */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        /* 服务卡片悬停效果 */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
+        }
+        
+        /* 评价卡片轮播 */
+        .testimonial-container {
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial-card {
+            scroll-snap-align: start;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-100 overflow-x-hidden">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center bg-glass">
+            <a href="#hero" class="text-2xl font-bold text-gradient">
+                <span class="text-primary">AI</span>CREATIVE
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#hero" class="nav-link active-nav relative text-gray-100 hover:text-primary transition-colors duration-300">首頁</a>
+                <a href="#projects" class="nav-link relative text-gray-100 hover:text-primary transition-colors duration-300">作品</a>
+                <a href="#about" class="nav-link relative text-gray-100 hover:text-primary transition-colors duration-300">關於我</a>
+                <a href="#services" class="nav-link relative text-gray-100 hover:text-primary transition-colors duration-300">服務</a>
+                <a href="#testimonials" class="nav-link relative text-gray-100 hover:text-primary transition-colors duration-300">評價</a>
+                <a href="#contact" class="nav-link relative text-gray-100 hover:text-primary transition-colors duration-300">聯絡</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-gray-100 focus:outline-none">
+                <i class="fa fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-glass">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#hero" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">首頁</a>
+                <a href="#projects" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">作品</a>
+                <a href="#about" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">關於我</a>
+                <a href="#services" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">服務</a>
+                <a href="#testimonials" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">評價</a>
+                <a href="#contact" class="mobile-nav-link text-gray-100 hover:text-primary transition-colors duration-300 py-2">聯絡</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero 区域 -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-16 overflow-hidden">
+        <!-- 背景粒子效果 -->
+        <div id="particles-container" class="absolute inset-0"></div>
+        
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0" data-aos="fade-right" data-aos-duration="1000">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                        <span class="text-gradient">AI創作</span>
+                        <br>設計工作室
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-8 max-w-lg">
+                        專注於利用AI技術創作獨特的平面設計、電商銷售頁面和AI短劇，為您的品牌帶來全新的視覺體驗。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#projects" class="btn-primary bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 px-6 rounded-lg hover:opacity-90 transition-opacity duration-300">
+                            瀏覽作品
+                        </a>
+                        <a href="#contact" class="bg-transparent border border-primary text-primary font-medium py-3 px-6 rounded-lg hover:bg-primary hover:bg-opacity-10 transition-all duration-300">
+                            聯絡我
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="relative w-full max-w-md animate-float">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full filter blur-3xl opacity-20 animate-pulse-slow"></div>
+                        <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/fc4541ccfaf74d92b1920ee8e923772f.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&amp;rcl=20260510000007FB2A4E14879F4307B1B9&amp;rrcfp=8a172a1a&amp;x-expires=1778947208&amp;x-signature=M4xxqz8APx4hAhHR5cz0F2adI%2Bk%3D" alt="设计师头像" class="w-80 h-80 object-cover object-center rounded-full border-4 border-primary border-glow relative z-10">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 向下滚动指示器 -->
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-primary scroll-indicator">
+                <i class="fa fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 作品展示区 -->
+    <section id="projects" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">精選<span class="text-gradient">作品</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    探索我的AI設計作品集，每一個項目都融合了創意與新鮮感。
+                </p>
+            </div>
+            
+            <!-- 作品分类筛选 -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active bg-glass text-primary border border-primary py-2 px-6 rounded-full hover:bg-primary hover:bg-opacity-10 transition-all duration-300" data-filter="all">
+                    全部
+                </button>
+                <button class="filter-btn bg-glass text-gray-300 border border-gray-700 py-2 px-6 rounded-full hover:bg-primary hover:bg-opacity-10 hover:text-primary hover:border-primary transition-all duration-300" data-filter="dashboard">AI平面作品</button>
+                <button class="filter-btn bg-glass text-gray-300 border border-gray-700 py-2 px-6 rounded-full hover:bg-primary hover:bg-opacity-10 hover:text-primary hover:border-primary transition-all duration-300" data-filter="mobile">AI電商作品</button>
+                <button class="filter-btn bg-glass text-gray-300 border border-gray-700 py-2 px-6 rounded-full hover:bg-primary hover:bg-opacity-10 hover:text-primary hover:border-primary transition-all duration-300" data-filter="vr">AI短劇</button>
+            </div>
+            
+            <!-- 作品网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 作品项 1 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="dashboard" data-aos="fade-up" data-aos-delay="100">
+                    <div class="overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ee68f61404b347e593ad0d65fcce98e6~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933075&amp;x-signature=w5O2DdP8%2FhHfXyrnGZaF%2BbzInWo%3D" alt="数据可视化仪表盘" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">数据可视化仪表盘</h3>
+                        <p class="text-gray-300 mb-4">现代化科技感数据监控界面，实时数据展示与分析</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('数据可视化仪表盘', 'https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/ee68f61404b347e593ad0d65fcce98e6~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933075&amp;x-signature=w5O2DdP8%2FhHfXyrnGZaF%2BbzInWo%3D', '这是一个现代化的数据可视化仪表盘设计，采用深蓝色调营造科技感氛围。界面包含实时数据展示、用户增长趋势图表和区域分布统计等功能模块。设计特点包括半透明卡片、渐变边框和流畅的数据动画效果，为用户提供直观的数据监控体验。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品项 2 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b3e63a7bf54d47a6846bb2200520aada~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933083&amp;x-signature=PGDZhfMddpEX6w%2BtIAfYwLTk27A%3D" alt="移动应用界面" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">移动应用界面</h3>
+                        <p class="text-gray-300 mb-4">科技感十足的移动应用界面，深色主题与荧光元素结合</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('移动应用界面', 'https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/b3e63a7bf54d47a6846bb2200520aada~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933083&amp;x-signature=PGDZhfMddpEX6w%2BtIAfYwLTk27A%3D', '这是一款科技感十足的移动应用界面设计，采用深色背景配合荧光蓝元素，打造出未来感视觉效果。界面包含实时流量监控、设备状态显示和流量趋势图表等功能，通过简洁的图标和清晰的数据展示，为用户提供直观的使用体验。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品项 3 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="dashboard" data-aos="fade-up" data-aos-delay="300">
+                    <div class="overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/21d59f437a8345ae8329a390f4e3bc17~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933077&amp;x-signature=xhv8q1%2BLz4ybw89a4TbqIbFMJL4%3D" alt="3D数据仪表盘" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">3D数据仪表盘</h3>
+                        <p class="text-gray-300 mb-4">创新的3D数据可视化界面，蓝紫色渐变营造未来感</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('3D数据仪表盘', 'https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/21d59f437a8345ae8329a390f4e3bc17~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933077&amp;x-signature=xhv8q1%2BLz4ybw89a4TbqIbFMJL4%3D', '这是一个创新的3D数据仪表盘设计，采用蓝紫色渐变背景和立体图表元素，营造出强烈的未来感和科技感。界面包含柱状图、折线图和环形进度指示器等多种数据可视化组件，通过光影效果和空间层次，为用户提供沉浸式的数据浏览体验。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品项 4 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="mobile" data-aos="fade-up" data-aos-delay="100">
+                    <div class="overflow-hidden">
+                        <img src="https://p26-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/126df916911d4992b0c46b0c6cc390b1~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933082&amp;x-signature=X3BQCuBq0yuY9uVAXjoPNJci5EU%3D" alt="智能手表界面" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">智能手表界面</h3>
+                        <p class="text-gray-300 mb-4">未来主义智能手表界面设计，健康数据实时监控</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('智能手表界面', 'https://p26-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/126df916911d4992b0c46b0c6cc390b1~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933082&amp;x-signature=X3BQCuBq0yuY9uVAXjoPNJci5EU%3D', '这是一款未来主义风格的智能手表界面设计，采用圆形布局和荧光蓝边框，突出科技感。界面显示时间、心率、步数、天气和电池状态等关键信息，通过简洁的图标和清晰的数字展示，确保用户可以快速获取所需信息。设计注重信息层次和视觉平衡，适合小屏幕设备使用。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品项 5 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="vr" data-aos="fade-up" data-aos-delay="200">
+                    <div class="overflow-hidden">
+                        <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/3eecfbc5a7c64339896b6d2a8b0dcfab~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933080&amp;x-signature=CWZKlqXp%2FFQwbWqCf564q87tH6k%3D" alt="虚拟现实界面" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">虚拟现实界面</h3>
+                        <p class="text-gray-300 mb-4">沉浸式虚拟现实用户界面，未来科技感交互设计</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('虚拟现实界面', 'https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/3eecfbc5a7c64339896b6d2a8b0dcfab~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933080&amp;x-signature=CWZKlqXp%2FFQwbWqCf564q87tH6k%3D', '这是一个沉浸式虚拟现实界面设计，采用深蓝色背景和发光线条元素，营造出未来科技感。界面包含多个圆形和六边形显示区域，可用于展示不同类型的信息或交互功能。设计注重空间感和层次感，通过线条和几何形状创造出立体视觉效果，为用户提供身临其境的交互体验。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 作品项 6 -->
+                <div class="project-card group relative overflow-hidden rounded-xl" data-category="dashboard" data-aos="fade-up" data-aos-delay="300">
+                    <div class="overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/08ee5699cc534fc4861be95e2ab27426~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933089&amp;x-signature=PhJ8g1b38BC95NN8O5eRsYkIzoc%3D" alt="创意设计平台" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-darkBlue to-transparent opacity-0 transition-opacity duration-300 flex flex-col justify-end p-6">
+                        <h3 class="text-xl font-bold mb-2">创意设计平台</h3>
+                        <p class="text-gray-300 mb-4">玻璃态效果设计平台，霓虹色调与未来感布局</p>
+                        <a href="#" class="inline-block text-primary hover:text-white transition-colors duration-300 flex items-center" onclick="openProjectModal('创意设计平台', 'https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/08ee5699cc534fc4861be95e2ab27426~tplv-a9rns2rl98-image.image?lk3s=8e244e95&amp;rcl=202605092337267ABBB4CF61C676B925E9&amp;rrcfp=f06b921b&amp;x-expires=1780933089&amp;x-signature=PhJ8g1b38BC95NN8O5eRsYkIzoc%3D', '这是一个创意设计平台界面，采用玻璃态效果和霓虹色调，营造出未来感和科技感。界面包含导航栏和三个主要功能卡片，分别代表数据分析、创意设计和未来科技。设计特点包括半透明背景、模糊效果和发光边框，通过粉色和青色的对比，创造出视觉冲击力。')">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 加载更多按钮 -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="bg-glass text-primary border border-primary py-3 px-8 rounded-lg hover:bg-primary hover:bg-opacity-10 transition-all duration-300">
+                    加載更多作品
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我 -->
+    <section id="about" class="py-20 bg-darkBlue bg-opacity-50 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">關於<span class="text-gradient">我</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    了解我的專業背景、技能和AI創作理念。
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/3" data-aos="fade-right">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-xl filter blur-xl opacity-20 animate-pulse-slow"></div>
+                        <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/fc4541ccfaf74d92b1920ee8e923772f.jpg~tplv-a9rns2rl98-24:720:720.jpg?lk3s=8e244e95&amp;rcl=20260510000007FB2A4E14879F4307B1B9&amp;rrcfp=8a172a1a&amp;x-expires=1778947208&amp;x-signature=M4xxqz8APx4hAhHR5cz0F2adI%2Bk%3D" alt="设计师照片" class="w-64 h-96 object-cover object-center rounded-xl border-4 border-primary border-glow relative z-10 mx-auto">
+                    </div>
+                </div>
+                
+                <div class="md:w-2/3" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-2xl font-bold mb-4 text-gradient">專業AI創作設計師</h3>
+                        <p class="text-gray-300 mb-6" id="about-text">
+                            我是一名專注於AI創作的設計師，擁有豐富的AI繪圖和內容創作經驗。我熱衷於利用最新的AI技術，創作獨特且具有視覺衝擊力的平面設計、電商銷售頁面和AI短劇。
+                            <br><br>
+                            我的創作理念是將人工智慧與人類創意相結合，通過精準的提示詞和後期處理，打造出既有藝術價值又能滿足商業需求的作品。我擅長多種AI工具和技術，能夠根據客戶需求提供量身定制的創作方案。
+                            <br><br>
+                            在過去的專案中，我為眾多客戶創作了大量優質的AI作品，幫助他們提升品牌形象和銷售業績。我相信AI不僅是一種工具，更是一種全新的創作媒介，能夠開闢設計和內容創作的新領域。
+                        </p>
+                        
+                        <!-- 编辑按钮（仅管理员可见） -->
+
+                        
+                        <!-- 技能标签 -->
+                        <div class="mt-8">
+                            <h4 class="text-xl font-bold mb-4">專業技能</h4>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">AI繪圖</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">提示詞工程</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">平面設計</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">電商設計</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">AI短劇製作</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">Photoshop</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">Illustrator</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">影片剪輯</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">內容創作</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">品牌設計</span>
+                                <span class="bg-darkPurple text-primary px-4 py-2 rounded-full text-sm">商業攝影</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务 -->
+    <section id="services" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">我的<span class="text-gradient">服務</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    提供專業的AI創作服務，滿足您的品牌和業務需求。
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 服务项 1 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-picture-o text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI平面設計</h3>
+                    <p class="text-gray-300 mb-6">
+                        利用AI技術創作獨特且具有視覺衝擊力的平面設計作品，包括海報、宣傳冊、品牌視覺等，為您的品牌帶來全新的視覺體驗。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 品牌海報設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 產品宣傳圖
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 商業插畫
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 社交媒體圖文
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 服务项 2 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-shopping-cart text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI電商設計</h3>
+                    <p class="text-gray-300 mb-6">
+                        專業的電商銷售頁面設計，結合AI技術創作吸引人的產品展示和營銷內容，提升轉化率和銷售業績。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 產品主圖設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 詳情頁設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 促銷海報設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 電商Banner設計
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 服务项 3 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-film text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI短劇製作</h3>
+                    <p class="text-gray-300 mb-6">
+                        利用AI技術創作和製作引人入勝的短劇內容，包括劇本創作、角色設計、場景生成和影片剪輯，為品牌提供創新的內容營銷方案。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> AI劇本創作
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 角色與場景設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 影片剪輯與後期
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 品牌內容整合
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 服务项 4 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-camera text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI商業攝影</h3>
+                    <p class="text-gray-300 mb-6">
+                        利用AI技術生成高質量的商業攝影作品，包括產品攝影、時尚攝影和場景攝影，為您的品牌提供獨特的視覺內容。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 產品商業攝影
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 時尚與服裝攝影
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 室內場景設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 概念攝影創作
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 服务项 5 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-pencil text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">提示詞工程</h3>
+                    <p class="text-gray-300 mb-6">
+                        提供專業的AI提示詞工程服務，幫助客戶優化AI工具的使用效果，獲得更精確、高質量的AI生成內容。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 提示詞優化
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> AI工作流程設計
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 定制化提示模板
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> AI工具培訓指導
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                
+                <!-- 服务项 6 -->
+                <div class="service-card bg-glass p-8 rounded-xl border border-gray-800 hover:border-primary transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI內容創作</h3>
+                    <p class="text-gray-300 mb-6">
+                        提供全方位的AI內容創作服務，包括文案撰寫、圖文設計、影片腳本等，為品牌提供高質量、高轉化的內容營銷方案。
+                    </p>
+                    <ul class="text-gray-300 mb-6 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 品牌文案創作
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 產品描述優化
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 行銷內容策劃
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-check text-primary mr-2"></i> 多媒體內容整合
+                        </li>
+                    </ul>
+                    <a href="#contact" class="inline-block text-primary hover:text-white transition-colors duration-300">
+                        了解更多 <i class="fa fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section id="testimonials" class="py-20 bg-darkBlue bg-opacity-50 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">客戶<span class="text-gradient">評價</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    聽聽我的客戶怎麼說。
+                </p>
+            </div>
+            
+            <div class="testimonial-container flex overflow-x-auto pb-8 -mx-4 px-4 snap-x snap-mandatory">
+                <!-- 评价项 1 -->
+                <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4 snap-start" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="text-primary text-2xl mr-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="text-gray-400">5.0</span>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "這位AI創作設計師的作品令人驚歎！他為我們的品牌創作的AI平面設計不僅視覺效果出色，而且完美詮釋了我們的品牌理念。他對細節的關注和創意能力給我們留下了深刻的印象。"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                <span class="font-bold text-white">L</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">李明</h4>
+                                <p class="text-gray-400 text-sm">科技公司CEO</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价项 2 -->
+                <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4 snap-start" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="text-primary text-2xl mr-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="text-gray-400">5.0</span>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "與這位AI創作設計師合作是一次愉快的經歷。他為我們的電商平台設計的產品頁面不僅美觀，而且顯著提升了我們的轉化率。他的專業知識和創新思維讓我們的品牌煥然一新。"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                <span class="font-bold text-white">W</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">王x芳</h4>
+                                <p class="text-gray-400 text-sm">產品經理</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价项 3 -->
+                <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4 snap-start" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="text-primary text-2xl mr-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                            </div>
+                            <span class="text-gray-400">4.5</span>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "設計師的AI短劇製作能力令人印象深刻！他為我們品牌創作的系列短劇在社交媒體上獲得了極大的關注和分享，顯著提升了我們的品牌知名度和用戶參與度。"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                <span class="font-bold text-white">Z</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">張x偉</h4>
+                                <p class="text-gray-400 text-sm">技術總監</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 评价项 4 -->
+                <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 p-4 snap-start" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800 h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="text-primary text-2xl mr-2">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <span class="text-gray-400">5.0</span>
+                        </div>
+                        <p class="text-gray-300 mb-6 italic">
+                            "我們非常滿意這位設計師提供的AI內容創作服務。他創作的品牌文案和圖文內容不僅質量高，而且非常符合我們的目標受眾。他的專業能力和敬業態度讓我們非常信任。"
+                        </p>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mr-4">
+                                <span class="font-bold text-white">C</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">陳x淨</h4>
+                                <p class="text-gray-400 text-sm">出版社編輯</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 评价导航按钮 -->
+            <div class="flex justify-center mt-8 space-x-2">
+                <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-primary transition-colors duration-300 active" data-index="0"></button>
+                <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-primary transition-colors duration-300" data-index="1"></button>
+                <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-primary transition-colors duration-300" data-index="2"></button>
+                <button class="testimonial-dot w-3 h-3 rounded-full bg-gray-600 hover:bg-primary transition-colors duration-300" data-index="3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系 -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">聯絡<span class="text-gradient">我</span></h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    如果您有任何AI創作需求或合作意向，請隨時與我聯絡。
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- 联系信息 -->
+                <div class="lg:w-1/3" data-aos="fade-right">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800 h-full">
+                        <h3 class="text-2xl font-bold mb-6">聯絡方式</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">郵箱</h4>
+                                    <p class="text-gray-300">fang0900188366@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-wechat text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">微信</h4>
+                                    <p class="text-gray-300">dean486689</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-map-marker text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">地址</h4>
+                                    <p class="text-gray-300">台灣屏東縣</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 社交媒体链接 -->
+                        <div class="mt-10">
+                            <h4 class="font-bold mb-4">關注我</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" id="instagram-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a href="#" id="facebook-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#" id="youtube-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                                <a href="#" id="google-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                                <a href="#" id="bilibili-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-play-circle"></i>
+                                </a>
+                                <a href="#" id="douyin-link" class="w-10 h-10 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                    <i class="fa fa-music"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 联系表单 -->
+                <div class="lg:w-2/3" data-aos="fade-left" data-aos-delay="200">
+                    <div class="bg-glass p-8 rounded-xl border border-gray-800">
+                        <h3 class="text-2xl font-bold mb-6">發送訊息</h3>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-gray-300 mb-2">姓名</label>
+                                    <input type="text" id="name" name="name" class="form-input w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required="">
+                                </div>
+                                
+                                <div>
+                                    <label for="email" class="block text-gray-300 mb-2">郵箱</label>
+                                    <input type="email" id="email" name="email" class="form-input w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required="">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-gray-300 mb-2">主題</label>
+                                <input type="text" id="subject" name="subject" class="form-input w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required="">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-gray-300 mb-2">消息</label>
+                                <textarea id="message" name="message" rows="6" class="form-textarea w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required=""></textarea>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="btn-primary bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition-opacity duration-300 w-full md:w-auto">
+                                    發送訊息
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-darkBlue bg-opacity-50 py-12 relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#hero" class="text-2xl font-bold text-gradient">
+                        <span class="text-primary">AI</span>CREATIVE
+                    </a>
+                    <p class="text-gray-400 mt-2">專業AI創作設計</p>
+                </div>
+                
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="#hero" class="text-gray-400 hover:text-primary transition-colors duration-300">首頁</a>
+                    <a href="#projects" class="text-gray-400 hover:text-primary transition-colors duration-300">作品</a>
+                    <a href="#about" class="text-gray-400 hover:text-primary transition-colors duration-300">關於我</a>
+                    <a href="#services" class="text-gray-400 hover:text-primary transition-colors duration-300">服務</a>
+                    <a href="#testimonials" class="text-gray-400 hover:text-primary transition-colors duration-300">評價</a>
+                    <a href="#contact" class="text-gray-400 hover:text-primary transition-colors duration-300">聯絡</a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2026 AI CREATIVE. 保留所有權利。</p>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fa fa-behance"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fa fa-dribbble"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-primary transition-colors duration-300">
+                        <i class="fa fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 项目详情模态框 -->
+    <div id="project-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-80" onclick="closeProjectModal()"></div>
+        <div class="modal-content relative bg-darkBlue rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300 z-10" onclick="closeProjectModal()">
+                <i class="fa fa-times text-2xl"></i>
+            </button>
+            
+            <div class="p-6 md:p-8">
+                <h3 id="modal-title" class="text-2xl md:text-3xl font-bold mb-6 text-gradient"></h3>
+                
+                <div class="mb-8">
+                    <img id="modal-image" src="" alt="项目详情图" class="w-full h-auto rounded-lg">
+                </div>
+                
+                <div class="mb-8">
+                    <h4 class="text-xl font-bold mb-4">项目描述</h4>
+                    <p id="modal-description" class="text-gray-300"></p>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="text-gray-400">分享到：</span>
+                        <div class="flex space-x-3 mt-2">
+                            <a href="#" class="w-8 h-8 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="w-8 h-8 bg-darkPurple rounded-full flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn-primary bg-gradient-to-r from-primary to-secondary text-white font-medium py-2 px-6 rounded-lg hover:opacity-90 transition-opacity duration-300">
+                        访问项目
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 后台上传模态框 -->
+    <div id="upload-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-80" onclick="closeUploadModal()"></div>
+        <div class="modal-content relative bg-darkBlue rounded-xl max-w-lg w-full">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300 z-10" onclick="closeUploadModal()">
+                <i class="fa fa-times text-2xl"></i>
+            </button>
+            
+            <div class="p-6 md:p-8">
+                <h3 class="text-2xl font-bold mb-6">上传新作品</h3>
+                
+                <form id="upload-form" class="space-y-6">
+                    <div>
+                        <label for="project-title" class="block text-gray-300 mb-2">作品標題</label>
+                        <input type="text" id="project-title" name="project-title" class="form-input w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required="">
+                    </div>
+                    
+                    <div>
+                        <label for="project-description" class="block text-gray-300 mb-2">作品描述</label>
+                        <textarea id="project-description" name="project-description" rows="4" class="form-textarea w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required=""></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="project-category" class="block text-gray-300 mb-2">作品分类</label>
+                        <select id="project-category" name="project-category" class="form-select w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required="">
+                            <option value="">請選擇分類</option>
+                            <option value="dashboard">仪表盘</option>
+                            <option value="mobile">移动应用</option>
+                            <option value="vr">虚拟现实</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="project-image" class="block text-gray-300 mb-2">作品圖片</label>
+                        <input type="file" id="project-image" name="project-image" class="form-file w-full text-white" accept="image/*" required="">
+                    </div>
+                    
+                    <div>
+                        <label for="project-link" class="block text-gray-300 mb-2">項目連接 (可选)</label>
+                        <input type="url" id="project-link" name="project-link" class="form-input w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300">
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="btn-primary bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition-opacity duration-300 w-full">
+                            上传作品
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我编辑模态框 -->
+    <div id="edit-about-modal" class="modal fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div class="modal-backdrop absolute inset-0 bg-black bg-opacity-80" onclick="closeEditAboutModal()"></div>
+        <div class="modal-content relative bg-darkBlue rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-300 z-10" onclick="closeEditAboutModal()">
+                <i class="fa fa-times text-2xl"></i>
+            </button>
+            
+            <div class="p-6 md:p-8">
+                <h3 class="text-2xl font-bold mb-6">编辑个人简介</h3>
+                
+                <form id="edit-about-form" class="space-y-6">
+                    <div>
+                        <label for="about-content" class="block text-gray-300 mb-2">个人简介</label>
+                        <textarea id="about-content" name="about-content" rows="10" class="form-textarea w-full bg-darkPurple bg-opacity-50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors duration-300" required=""></textarea>
+                    </div>
+                    
+                    <div class="flex justify-end">
+                        <button type="button" class="bg-gray-700 text-white font-medium py-3 px-6 rounded-lg hover:bg-gray-600 transition-colors duration-300 mr-4" onclick="closeEditAboutModal()">
+                            取消
+                        </button>
+                        <button type="submit" class="btn-primary bg-gradient-to-r from-primary to-secondary text-white font-medium py-3 px-8 rounded-lg hover:opacity-90 transition-opacity duration-300">
+                            保存更改
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员工具栏 -->
+    <div id="admin-toolbar" class="fixed bottom-6 right-6 z-40">
+
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-6 right-24 w-12 h-12 bg-darkPurple rounded-full flex items-center justify-center text-primary shadow-lg hover:bg-primary hover:text-white transition-all duration-300 opacity-0 invisible">
+        <i class="fa fa-chevron-up text-xl"></i>
+    </button>
+
+    <script>
+        // 初始化AOS动画库
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+            
+            // 创建背景粒子效果
+            createParticles();
+            
+            // 初始化导航栏滚动效果
+            initNavbarScroll();
+            
+            // 初始化作品筛选功能
+            initProjectFilter();
+            
+            // 初始化评价轮播
+            initTestimonialSlider();
+            
+            // 初始化表单提交
+            initForms();
+            
+            // 初始化返回顶部按钮
+            initBackToTop();
+            
+            // 初始化移动端菜单
+            initMobileMenu();
+        });
+        
+        // 创建背景粒子效果
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // 随机大小
+                const size = Math.random() * 5 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // 随机位置
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // 随机透明度
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // 随机动画延迟
+                particle.style.animationDelay = `${Math.random() * 8}s`;
+                
+                // 随机动画持续时间
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // 导航栏滚动效果
+        function initNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            
+            window.addEventListener('scroll', function() {
+                // 导航栏背景透明度变化
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-darkBlue', 'bg-opacity-90', 'shadow-lg');
+                } else {
+                    navbar.classList.remove('bg-darkBlue', 'bg-opacity-90', 'shadow-lg');
+                }
+                
+                // 高亮当前部分对应的导航链接
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active-nav');
+                    }
+                });
+            });
+        }
+        
+        // 作品筛选功能
+        function initProjectFilter() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有按钮的活跃状态
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active', 'bg-glass', 'text-primary', 'border-primary');
+                        b.classList.add('text-gray-300', 'border-gray-700');
+                    });
+                    
+                    // 添加当前按钮的活跃状态
+                    this.classList.add('active', 'bg-glass', 'text-primary', 'border-primary');
+                    this.classList.remove('text-gray-300', 'border-gray-700');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // 筛选项目卡片
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.8)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+        
+        // 评价轮播
+        function initTestimonialSlider() {
+            const dots = document.querySelectorAll('.testimonial-dot');
+            const testimonialContainer = document.querySelector('.testimonial-container');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            let currentIndex = 0;
+            
+            function goToSlide(index) {
+                const cardWidth = testimonialCards[0].offsetWidth;
+                testimonialContainer.scrollTo({
+                    left: cardWidth * index,
+                    behavior: 'smooth'
+                });
+                
+                // 更新指示点
+                dots.forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add('bg-primary');
+                        dot.classList.remove('bg-gray-600');
+                    } else {
+                        dot.classList.remove('bg-primary');
+                        dot.classList.add('bg-gray-600');
+                    }
+                });
+                
+                currentIndex = index;
+            }
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
+                });
+            });
+            
+            // 自动轮播
+            setInterval(() => {
+                let nextIndex = (currentIndex + 1) % dots.length;
+                goToSlide(nextIndex);
+            }, 5000);
+        }
+        
+        // 表单提交
+        function initForms() {
+            // 联系表单
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 获取表单数据
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    // 模拟表单提交
+                    alert(`感谢您的留言，${name}！\n我们已收到您的消息，将尽快回复您。`);
+                    
+                    // 重置表单
+                    contactForm.reset();
+                });
+            }
+            
+            // 上传表单
+            const uploadForm = document.getElementById('upload-form');
+            if (uploadForm) {
+                uploadForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 获取表单数据
+                    const title = document.getElementById('project-title').value;
+                    const description = document.getElementById('project-description').value;
+                    const category = document.getElementById('project-category').value;
+                    const image = document.getElementById('project-image').files[0];
+                    const link = document.getElementById('project-link').value;
+                    
+                    // 模拟表单提交
+                    alert(`作品 "${title}" 上传成功！`);
+                    
+                    // 关闭模态框并重置表单
+                    closeUploadModal();
+                    uploadForm.reset();
+                });
+            }
+            
+            // 编辑关于我表单
+            const editAboutForm = document.getElementById('edit-about-form');
+            if (editAboutForm) {
+                editAboutForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 获取表单数据
+                    const content = document.getElementById('about-content').value;
+                    
+                    // 更新关于我内容
+                    document.getElementById('about-text').textContent = content;
+                    
+                    // 关闭模态框
+                    closeEditAboutModal();
+                    
+                    // 显示成功消息
+                    alert('个人简介更新成功！');
+                });
+            }
+        }
+        
+        // 返回顶部按钮
+        function initBackToTop() {
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'invisible');
+                    backToTopBtn.classList.add('opacity-100', 'visible');
+                } else {
+                    backToTopBtn.classList.add('opacity-0', 'invisible');
+                    backToTopBtn.classList.remove('opacity-100', 'visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // 移动端菜单
+        function initMobileMenu() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            menuToggle.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+        
+        // 项目详情模态框
+        function openProjectModal(title, imageSrc, description) {
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalImage = document.getElementById('modal-image');
+            const modalDescription = document.getElementById('modal-description');
+            
+            modalTitle.textContent = title;
+            modalImage.src = imageSrc;
+            modalImage.alt = title;
+            modalDescription.textContent = description;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 上传模态框
+        function openUploadModal() {
+            const modal = document.getElementById('upload-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeUploadModal() {
+            const modal = document.getElementById('upload-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 编辑关于我模态框
+        function openEditAboutModal() {
+            const modal = document.getElementById('edit-about-modal');
+            const aboutContent = document.getElementById('about-text').textContent;
+            const aboutContentInput = document.getElementById('about-content');
+            
+            aboutContentInput.value = aboutContent;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeEditAboutModal() {
+            const modal = document.getElementById('edit-about-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 上传按钮点击事件
+        document.getElementById('upload-btn').addEventListener('click', function() {
+            openUploadModal();
+        });
+        
+        // 编辑关于我按钮点击事件
+        document.getElementById('edit-about').addEventListener('click', function() {
+            openEditAboutModal();
+        });
+        
+        // 加载更多按钮点击事件
+        document.getElementById('load-more').addEventListener('click', function() {
+            this.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i> 加载中...';
+            
+            // 模拟加载延迟
+            setTimeout(() => {
+                this.innerHTML = '没有更多作品';
+                this.disabled = true;
+                this.classList.add('opacity-50', 'cursor-not-allowed');
+            }, 1500);
+        });
+    </script>
+
+</body></html>
