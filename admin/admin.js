@@ -4,7 +4,7 @@ const SUPABASE_ANON_KEY = 'sb_publishable_bqQBYKkK3_O1ZrlXa_STgg_lM1Bf7RZ';
 
 let supabase = null;
 
-// 等待頁面載入完成後初始化
+// 頁面載入後初始化
 document.addEventListener('DOMContentLoaded', () => {
     supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     loadSiteData();
