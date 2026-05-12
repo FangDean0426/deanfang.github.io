@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台控制台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0a0a1e; color: #e2e8f0; }
+        .tab-active { border-bottom: 3px solid #22d3ee; color: #22d3ee; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-slate-900 p-6 flex justify-between">
+        <h1 class="text-2xl font-bold text-cyan-400">AI作品集 後台管理</h1>
+        <button id="logout" class="bg-red-600 px-4 py-2 rounded">登出</button>
+    </header>
+
+    <div class="flex border-b border-slate-700">
+        <button onclick="switchTab(0)" class="tab px-8 py-4 tab-active" id="tab0">網站設定</button>
+        <button onclick="switchTab(1)" class="tab px-8 py-4" id="tab1">作品集管理</button>
+    </div>
+
+    <div class="p-8">
+        <!-- 作品集管理 -->
+        <div id="content1" class="tab-content">
+            <h3 class="text-xl mb-6">現有作品列表</h3>
+            <div id="workList" class="space-y-3"></div>
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="admin.js"></script>
+    <script>
+        function switchTab(n) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.getElementById('content' + n).style.display = 'block';
+            document.querySelectorAll('.tab').forEach((el, i) => {
+                el.classList.toggle('tab-active', i === n);
+            });
+        }
+        document.getElementById('content1').style.display = 'block';
+    </script>
+</body>
+</html>
