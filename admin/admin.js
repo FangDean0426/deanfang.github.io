@@ -2,9 +2,9 @@
 const SUPABASE_URL = 'https://svmhmo1diygovcswppk.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_bqQBYKkK3_O1ZrlXa_STgg_lM1Bf7RZ';
 
-let supabase;
+let supabase = null;
 
-// 等待頁面載入完成後初始化 Supabase
+// 等待頁面載入完成後初始化
 document.addEventListener('DOMContentLoaded', () => {
     supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     loadSiteData();
@@ -76,7 +76,6 @@ async function loadWorks() {
             </div>`;
         });
     }
-
     document.getElementById('workList').innerHTML = html;
 }
 
@@ -96,14 +95,13 @@ document.getElementById('addWork').addEventListener('click', async () => {
 
     const { error } = await supabase.from('works').insert([{ title, category, img, desc }]);
     
-    if (error) {
-        alert('新增失敗：' + error.message);
-    } else {
+    if (error) alert('新增失敗：' + error.message);
+    else {
         alert('✅ 作品新增成功！');
         document.getElementById('workTitle').value = '';
         document.getElementById('workImg').value = '';
         document.getElementById('workDesc').value = '';
-        loadWorks();   // 重新載入列表
+        loadWorks();
     }
 });
 
@@ -111,11 +109,9 @@ document.getElementById('addWork').addEventListener('click', async () => {
 document.getElementById('workList').addEventListener('click', async (e) => {
     if (e.target.classList.contains('delWork')) {
         if (!confirm('確定要刪除此作品嗎？')) return;
-        
         const id = e.target.dataset.id;
         const { error } = await supabase.from('works').delete().eq('id', id);
-        
-        if (error) alert('刪除失敗：' + error.message);
+        if (error) alert('刪除失敗');
         else loadWorks();
     }
 });
