@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台控制台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body{background:#0a0a1e;}
+        .tab-active{border-bottom:2px solid #22d3ee;color:#22d3ee;}
+    </style>
+</head>
+<body class="text-gray-200">
+    <!-- 頂部導航 -->
+    <header class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-cyan-400">AI作品集 後台管理</h1>
+        <button id="logout" class="px-4 py-2 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30">登出</button>
+    </header>
+
+    <!-- 分頁標籤 -->
+    <div class="flex border-b border-slate-800 px-6 mt-4">
+        <button class="px-6 py-3 tab-active" data-tab="site">網站設定</button>
+        <button class="px-6 py-3" data-tab="works">作品集管理</button>
+    </div>
+
+    <div class="p-6 max-w-4xl mx-auto">
+        <!-- 網站設定頁 -->
+        <div id="tab-site" class="tab-content">
+            <h3 class="text-xl mb-4">修改首頁文字</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block mb-2">首頁標題</label>
+                    <textarea id="heroTitle" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700 h-20"></textarea>
+                </div>
+                <div>
+                    <label class="block mb-2">首頁介紹</label>
+                    <textarea id="heroDesc" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700 h-20"></textarea>
+                </div>
+                <div>
+                    <label class="block mb-2">關於我簡介</label>
+                    <textarea id="aboutText" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700 h-32"></textarea>
+                </div>
+                <button id="saveSite" class="px-6 py-3 bg-cyan-500 text-white rounded-lg">儲存設定</button>
+            </div>
+        </div>
+
+        <!-- 作品集管理頁 -->
+        <div id="tab-works" class="tab-content hidden">
+            <h3 class="text-xl mb-4">新增作品集</h3>
+            <div class="space-y-4 mb-8">
+                <input type="text" id="workTitle" placeholder="作品名稱" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700">
+                <select id="workCate" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700">
+                    <option value="dashboard">AI平面作品</option>
+                    <option value="mobile">AI電商作品</option>
+                    <option value="vr">AI短劇</option>
+                </select>
+                <input type="text" id="workImg" placeholder="作品圖片網址" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700">
+                <textarea id="workDesc" placeholder="作品簡介" class="w-full p-3 bg-slate-800 rounded-lg border border-slate-700 h-20"></textarea>
+                <button id="addWork" class="px-6 py-3 bg-purple-500 text-white rounded-lg">新增作品</button>
+            </div>
+
+            <h3 class="text-xl mb-4">現有作品列表</h3>
+            <div id="workList" class="space-y-3"></div>
+        </div>
+    </div>
+
+    <script src="../config.js"></script>
+    <script src="admin.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</body>
+</html>

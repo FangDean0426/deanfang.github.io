@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後台登入 | 管理中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body{background:#0a0a1e;}
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md p-8 bg-slate-900 rounded-xl border border-cyan-500/20 shadow-lg shadow-cyan-500/10">
+        <h2 class="text-3xl font-bold text-center text-cyan-400 mb-6">後台管理登入</h2>
+        <form id="loginForm">
+            <div class="mb-4">
+                <label class="block text-gray-300 mb-2">帳號</label>
+                <input type="text" id="user" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-cyan-400" required>
+            </div>
+            <div class="mb-6">
+                <label class="block text-gray-300 mb-2">密碼</label>
+                <input type="password" id="pwd" class="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-cyan-400" required>
+            </div>
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-400 to-purple-500 text-white font-bold rounded-lg hover:opacity-90">登入後台</button>
+            <p id="msg" class="text-red-400 text-center mt-4 hidden">帳號或密碼錯誤</p>
+        </form>
+    </div>
+
+    <script src="../config.js"></script>
+    <script>
+        const form = document.getElementById('loginForm');
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit',e=>{
+            e.preventDefault();
+            let u = document.getElementById('user').value;
+            let p = document.getElementById('pwd').value;
+
+            if(u === ADMIN_CONFIG.username && p === ADMIN_CONFIG.password){
+                localStorage.setItem('adminLogin','ok');
+                location.href = 'dashboard.html';
+            }else{
+                msg.classList.remove('hidden');
+            }
+        })
+    </script>
+</body>
+</html>
